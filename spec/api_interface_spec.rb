@@ -10,19 +10,38 @@ describe ApiInterface do
     described_class.new(httparty: httparty_double,
                         json: json_double)
   end
+  context 'correct usage of software' do
+    describe '#get_repos' do
+      it 'calls #make_get_request with url' do
+        url = 'https://api.github.com/users/octocat/repos'
+        expect(interface).to receive(:make_get_request)
+          .with(url).and_call_original
+        interface.get_repos('octocat')
+      end
+      it 'JSON should receive #parse with GET request Response' do
+        expect(json_double).to receive(:parse).with('response body')
+        interface.get_repos('octocat')
+      end
+      it 'should return api repsonse array ' do
+        expect(interface.get_repos('octocat')).to eq(['response array'])
+      end
+    end
+  end
 
-  describe '#get_repos' do
-    it 'HTTParty should receive #get with url' do
-      url = 'https://api.github.com/users/octocat/repos'
-      expect(httparty_double).to receive(:get).with(url)
-      interface.get_repos('octocat')
+  context 'edge-cases' do
+    describe 'when disconnected from the internet, #get_repos' do
+      it 'throws an Internet error' do
+        allow(httparty_double).to receive(:get).and_raise(SocketError)
+        expect { interface.get_repos('octocat') }
+          .to raise_error(RuntimeError, 'Are you connected to the Internet?')
+      end
     end
-    it 'JSON should receive #parse with GET request Response' do
-      expect(json_double).to receive(:parse).with('response body')
-      interface.get_repos('octocat')
-    end
-    it 'should return api repsonse array ' do
-      expect(interface.get_repos('octocat')).to eq(['response array'])
+    describe 'when unable to make request for another reason, #get_repos' do
+      it "throws an 'Unable to make GET request error'" do
+        allow(httparty_double).to receive(:get).and_raise(StandardError)
+        expect { interface.get_repos('octocat') }
+          .to raise_error(StandardError, 'Unable to make GET request')
+      end
     end
   end
 end

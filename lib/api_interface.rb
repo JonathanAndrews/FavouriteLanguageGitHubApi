@@ -14,7 +14,15 @@ class ApiInterface
 
   def get_repos(username)
     url = "https://api.github.com/users/#{username}/repos"
-    response = httparty.get(url)
+    response = make_get_request(url)
     json.parse(response.body)
+  end
+
+  def make_get_request(url)
+    httparty.get(url)
+  rescue SocketError
+    raise 'Are you connected to the Internet?'
+  rescue StandardError
+    raise 'Unable to make GET request'
   end
 end
