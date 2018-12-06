@@ -2,7 +2,7 @@
 
 ```
 As a User,
-So estimate someone favourite language,
+So I can determine someone's favourite language,
 I want to see their most frequently used language on GitHub.
 ```
 ## My Approach
