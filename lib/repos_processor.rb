@@ -6,6 +6,7 @@ class ReposProcessor
     language_array = extract_languages(repos_array)
     language_hash_with_nil = count_languages(language_array)
     language_hash = remove_nil(language_hash_with_nil)
+    most_frequent_lang(language_hash)
   end
 
   private
@@ -25,5 +26,10 @@ class ReposProcessor
   def remove_nil(hash)
     hash.delete(nil)
     hash
+  end
+
+  def most_frequent_lang(hash)
+    language_array = hash.max_by { |_k, v| v }
+    language_array[0]
   end
 end
