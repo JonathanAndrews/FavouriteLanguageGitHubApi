@@ -26,13 +26,12 @@ describe 'Feature Tests' do
                              json: json_double)
     end
     let(:repos_processor) { ReposProcessor.new }
-    let(:user_interface) do
-      described_class.new(api_interface, repos_processor)
-    end
 
-    describe '#run_program' do
-      it "returns 'Ruby'" do
-        expect { user_interface.run_program('octocat') }
+    describe '#intialize' do
+      it "outputs 'octocat's favourite language is Ruby.' to stdout" do
+        expect do
+          described_class.new('octocat', api_interface, repos_processor)
+        end
           .to output("octocat's favourite language is Ruby.\n")
           .to_stdout
       end
