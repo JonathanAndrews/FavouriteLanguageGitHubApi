@@ -1,4 +1,4 @@
-# GitHub API Tech Test
+# GitHub API Favourite Language
 
 ```
 As a User,
