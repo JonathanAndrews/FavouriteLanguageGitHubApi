@@ -5,8 +5,13 @@ require 'git_hub_api_interface'
 
 describe 'Feature Tests' do
   describe UserInterface do
-    let(:response_array) do
+    let(:repos_array) do
       [
+        { 'language' => nil },
+        { 'language' => nil },
+        { 'language' => nil },
+        { 'language' => nil },
+        { 'language' => 'Ruby' },
         { 'language' => 'Ruby' },
         { 'language' => 'Ruby' },
         { 'language' => 'Python' },
@@ -25,11 +30,9 @@ describe 'Feature Tests' do
       described_class.new(api_interface, repos_processor)
     end
 
-    context 'correct usage of software' do
-      xdescribe '#run_program' do
-        it "returns 'Ruby'" do
-          expect(user_interface.run_program('octocat')).to eq('Ruby')
-        end
+    xdescribe '#run_program' do
+      it "returns 'Ruby'" do
+        expect(user_interface.run_program('octocat')).to eq('Ruby')
       end
     end
   end

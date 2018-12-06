@@ -21,7 +21,7 @@ describe ReposProcessor do
   describe '#favourite_lang' do
     it 'extract the languages from the repos_array' do
       expect(processor.favourite_lang(repos_array)).to eq(
-        [nil, nil, nil, nil, 'Ruby', 'Ruby', 'Ruby', 'Python', 'Elixir']
+        nil => 4, 'Ruby' => 3, 'Python' => 1, 'Elixir' => 1
       )
     end
   end

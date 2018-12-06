@@ -4,6 +4,7 @@
 class ReposProcessor
   def favourite_lang(repos_array)
     language_array = extract_languages(repos_array)
+    hash_with_nil = count_languages(language_array)
   end
 
   private
@@ -12,5 +13,11 @@ class ReposProcessor
     languages_array = []
     repos_array.each { |json| languages_array.push(json['language']) }
     languages_array
+  end
+
+  def count_languages(array)
+    languages_hash = Hash.new(0)
+    array.each { |language| languages_hash[language] += 1 }
+    languages_hash
   end
 end
