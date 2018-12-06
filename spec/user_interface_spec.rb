@@ -29,5 +29,10 @@ describe UserInterface do
         .with(response_array)
       user_interface.run_program('octocat')
     end
+    it 'outputs desired string to stdout' do
+      expect { user_interface.run_program('octocat') }
+        .to output("octocat's favourite language is Ruby.\n")
+        .to_stdout
+    end
   end
 end

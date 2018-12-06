@@ -15,6 +15,13 @@ class UserInterface
 
   def run_program(username)
     repos = api_interface.get_repos(username)
-    processor.favourite_lang(repos)
+    language = processor.favourite_lang(repos)
+    output_string(username, language)
+  end
+
+  private
+
+  def output_string(username, language)
+    puts "#{username}'s favourite language is #{language}."
   end
 end

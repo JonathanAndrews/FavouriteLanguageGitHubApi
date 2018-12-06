@@ -20,7 +20,7 @@ describe 'Feature Tests' do
     end
     let(:get_response) { double :GET_Response, body: 'response body' }
     let(:httparty_double) { double :HTTParty, get: get_response }
-    let(:json_double) { double :JSON, parse: response_array }
+    let(:json_double) { double :JSON, parse: repos_array }
     let(:api_interface) do
       GitHubApiInterface.new(httparty: httparty_double,
                              json: json_double)
@@ -30,9 +30,11 @@ describe 'Feature Tests' do
       described_class.new(api_interface, repos_processor)
     end
 
-    xdescribe '#run_program' do
+    describe '#run_program' do
       it "returns 'Ruby'" do
-        expect(user_interface.run_program('octocat')).to eq('Ruby')
+        expect { user_interface.run_program('octocat') }
+          .to output("octocat's favourite language is Ruby.\n")
+          .to_stdout
       end
     end
   end
