@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'git_hub_api_interface'
-require 'repos_processor'
+require_relative 'git_hub_api_interface'
+require_relative 'repos_processor'
 
 # UserInterface takes user input and outputs result
 class UserInterface
