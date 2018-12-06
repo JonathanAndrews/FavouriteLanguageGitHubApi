@@ -3,14 +3,14 @@
 require 'git_hub_api_interface'
 
 describe GitHubApiInterface do
-  let(:response_array) {
+  let(:response_array) do
     [
-      { 'language' => 'Ruby'},
-      { 'language' => 'Ruby'},
-      { 'language' => 'Python'},
-      { 'language' => 'Elixir'}
+      { 'language' => 'Ruby' },
+      { 'language' => 'Ruby' },
+      { 'language' => 'Python' },
+      { 'language' => 'Elixir' }
     ]
-  }
+  end
   let(:get_response) { double :GET_Response, body: 'response body' }
   let(:httparty_double) { double :HTTParty, get: get_response }
   let(:json_double) { double :JSON, parse: response_array }
@@ -33,20 +33,21 @@ describe GitHubApiInterface do
       it 'calls #validate_username with repo_array' do
         expect(interface).to receive(:validate_username)
           .with([
-            { 'language' => 'Ruby'},
-            { 'language' => 'Ruby'},
-            { 'language' => 'Python'},
-            { 'language' => 'Elixir'}
-          ])
+                  { 'language' => 'Ruby' },
+                  { 'language' => 'Ruby' },
+                  { 'language' => 'Python' },
+                  { 'language' => 'Elixir' }
+                ])
         interface.get_repos('octocat')
       end
       it 'should return api repsonse array ' do
-        expect(interface.get_repos('octocat')).to eq([
-          { 'language' => 'Ruby'},
-          { 'language' => 'Ruby'},
-          { 'language' => 'Python'},
-          { 'language' => 'Elixir'}
-        ])
+        expect(interface.get_repos('octocat'))
+          .to eq([
+                   { 'language' => 'Ruby' },
+                   { 'language' => 'Ruby' },
+                   { 'language' => 'Python' },
+                   { 'language' => 'Elixir' }
+                 ])
       end
     end
   end

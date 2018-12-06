@@ -4,14 +4,14 @@ require 'user_interface'
 require 'git_hub_api_interface'
 
 describe UserInterface do
-  let(:response_array) {
+  let(:response_array) do
     [
-      { 'language' => 'Ruby'},
-      { 'language' => 'Ruby'},
-      { 'language' => 'Python'},
-      { 'language' => 'Elixir'}
+      { 'language' => 'Ruby' },
+      { 'language' => 'Ruby' },
+      { 'language' => 'Python' },
+      { 'language' => 'Elixir' }
     ]
-  }
+  end
   let(:api_interface) { double :GitHubApiInterface, get_repos: response_array }
   let(:repos_processor) { double :ReposProcessor, favourite_lang: 'Ruby' }
   let(:user_interface) do
