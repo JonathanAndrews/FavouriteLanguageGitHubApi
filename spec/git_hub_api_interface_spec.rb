@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'api_interface'
+require 'git_hub_api_interface'
 
-describe ApiInterface do
+describe GitHubApiInterface do
   let(:get_response) { double :GET_Response, body: 'response body' }
   let(:httparty_double) { double :HTTParty, get: get_response }
   let(:json_double) { double :JSON, parse: ['response array'] }

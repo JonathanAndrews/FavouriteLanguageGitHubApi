@@ -4,7 +4,7 @@ require 'httparty'
 require 'json'
 
 # ApiInterface fetchs Github repos while protecting against edge cases.
-class ApiInterface
+class GitHubApiInterface
   attr_reader :httparty, :json
 
   def initialize(httparty: HTTParty, json: JSON)
