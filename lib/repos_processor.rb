@@ -3,6 +3,12 @@
 # ReposProcessor contains methods that extract data from an Array of Hashes
 class ReposProcessor
   def favourite_lang(repos_array)
+    language_array = extract_languages(repos_array)
+  end
+
+  private
+
+  def extract_languages(repos_array)
     languages_array = []
     repos_array.each { |json| languages_array.push(json['language']) }
     languages_array
