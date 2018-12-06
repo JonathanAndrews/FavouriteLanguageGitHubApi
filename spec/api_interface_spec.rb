@@ -22,6 +22,11 @@ describe ApiInterface do
         expect(json_double).to receive(:parse).with('response body')
         interface.get_repos('octocat')
       end
+      it 'calls #validate_username with repo_array' do
+        expect(interface).to receive(:validate_username)
+          .with(['response array'])
+        interface.get_repos('octocat')
+      end
       it 'should return api repsonse array ' do
         expect(interface.get_repos('octocat')).to eq(['response array'])
       end
@@ -37,10 +42,18 @@ describe ApiInterface do
       end
     end
     describe 'when unable to make request for another reason, #get_repos' do
-      it "throws an 'Unable to make GET request error'" do
+      it "throws an 'Unable to make GET request' error" do
         allow(httparty_double).to receive(:get).and_raise(StandardError)
         expect { interface.get_repos('octocat') }
           .to raise_error(StandardError, 'Unable to make GET request')
+      end
+    end
+    describe 'when #get_repos is given a fake username ' do
+      it "throws an 'Not a valid Github Username' error" do
+        allow(json_double).to receive(:parse)
+          .and_return('message' => 'Not Found')
+        expect { interface.get_repos('NOT_A_USERNAME') }
+          .to raise_error(StandardError, 'Not a valid Github Username')
       end
     end
   end
