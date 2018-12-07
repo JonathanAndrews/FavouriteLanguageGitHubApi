@@ -24,7 +24,7 @@ Built with
 
 1. Clone this repo to your local machine.
 ```
-git clone https://github.com/JonathanAndrews/bank_tech_test.git
+git clone https://github.com/JonathanAndrews/FavouriteLanguageGitHubApi
 ```
 2. `cd` into the project.
 2. `bundle install` to install all the dependencies.
@@ -39,7 +39,7 @@ git clone https://github.com/JonathanAndrews/bank_tech_test.git
 
 ## Command Line Demo
 ```
-ruby whats_their_favourite_langauge.rb octocat JonathanAndrews zaargy
+>> ruby whats_their_favourite_langauge.rb octocat JonathanAndrews zaargy
 
 octocat's favourite language is Ruby.
 JonathanAndrews's favourite language is Ruby.
