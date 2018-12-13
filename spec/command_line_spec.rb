@@ -13,4 +13,10 @@ describe 'Running the program from the command line' do
     fav_lang.run_command
     expect(fav_lang.stdout).to eq "octocat's favourite language is Ruby.\n"
   end
+
+  it 'can take multiple arguments' do
+    fav_lang = Mixlib::ShellOut.new("ruby whats_their_favourite_langauge.rb octocat jonathanandrews")
+    fav_lang.run_command
+    expect(fav_lang.stdout).to eq "octocat's favourite language is Ruby.\njonathanandrews's favourite language is Ruby.\n"
+  end
 end
