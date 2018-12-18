@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 gem 'httparty'
+gem 'mixlib-shellout'
 gem 'pry'
 gem 'rspec'
 gem 'rubocop', '0.56.0'
